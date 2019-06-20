@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Session Management</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Session Management</h1>
+        
+        <h:outputLink value="addSession.xhtml">
+            <h2>Add Session</h2>
+        </h:outputLink>
+        
+        <table>
+            <tbody>
+                <h:form>
+                    <tr>
+                        <h:selectOneRadio id="query_selection" value="#{displayDataManagedBean.ajax_selection}">
+                            <td>
+                                <f:selectItem itemValue="all" itemLabel="All"/>
+                            </td>
+                            <td>
+                                <f:selectItem itemValue="past" itemLabel="Past"/>
+                            </td>
+                            <td>
+                                <f:selectItem itemValue="future" itemLabel="Future"/>
+                            </td>        
+                            <td>
+                                <f:selectItem itemValue="today" itemLabel="Today"/>
+                            </td>  
+                        </h:selectOneRadio>
+                        
+                        <h:commandButton value="Update" actionListener="users_output">
+                            <f:ajax event="change" execute="query_selection" render="session_output" immediate="true"/>
+                        </h:commandButton>
+                    </tr>
+                </h:form>
+            </tbody>
+        </table>
+        
+        <table>
+            <h:panelGroup id="session_output">
+                <ui:repeat value="#{displayDataManagedBean.showing}" var="s">
+                    <tr>
+                        <td>
+                            <h:outputText value="#{s.movieId.name} (#{s.movieId.rating})"/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{s.dateString()}"/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{s.timeString()}"/>
+                        </td>
+                        <td>
+                            <h:outputLink value="viewSession.xhtml?session_id=#{s.id}">
+                                <h:outputText value="View Session"/>
+                            </h:outputLink>
+                        </td>
+                        <td>
+                            <h:outputLink value="updateSession.xhtml?session_id=#{s.id}">
+                                <h:outputText value="Update Session"/>
+                            </h:outputLink>
+                        </td>
+                        <td>
+                            <h:outputLink value="deleteSession.xhtml?session_id=#{s.id}">
+                                <h:outputText value="Delete Session"/>
+                            </h:outputLink>
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </h:panelGroup>
+        </table>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+        
+    </h:body>
+</html>
+

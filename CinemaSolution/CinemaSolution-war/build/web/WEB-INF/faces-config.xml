@@ -1,0 +1,514 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <navigation-rule>
+        <description>Admin's Main Menu</description>
+        <from-view-id>admin/mainmenu.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>logout.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Employee's Main Menu</description>
+        <from-view-id>employee/mainmenu.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>logout.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>User's Main Menu</description>
+        <from-view-id>user/mainmenu.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>logout.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Add Cinema Operation</description>
+        <from-view-id>
+            admin/addCinema.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/addCinemaSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/addCinemaFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update Cinema Operation</description>
+        <from-view-id>
+            admin/updateCinema.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/updateCinemaSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/updateCinemaFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete Cinema Operation</description>
+        <from-view-id>
+            admin/deleteCinema.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/deleteCinemaSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/deleteCinemaFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Add Movie Operation</description>
+        <from-view-id>
+            employee/addMovie.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/addMovieSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/addMovieFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update Movie Operation</description>
+        <from-view-id>
+            employee/updateMovie.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/updateMovieSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/updateMovieFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete Movie Operation</description>
+        <from-view-id>
+            employee/deleteMovie.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/deleteMovieSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/deleteMovieFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Add Session Operation</description>
+        <from-view-id>
+            employee/addSession.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/addSessionSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/addSessionFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update Session Operation</description>
+        <from-view-id>
+            employee/updateSession.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/updateSessionSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/updateSessionFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete Session Operation</description>
+        <from-view-id>
+            employee/deleteSession.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/deleteSessionSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/deleteSessionFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Add Booking Operation</description>
+        <from-view-id>
+            user/bookTicket.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/user/confirmBooking.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/user/bookTicketFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Add Ticket Type Operation</description>
+        <from-view-id>
+            admin/addTicketType.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/addTicketTypeSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/addTicketTypeFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update Ticket Type Operation</description>
+        <from-view-id>
+            admin/updateTicketType.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/updateTicketTypeSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/updateTicketTypeFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete Ticket Type Operation</description>
+        <from-view-id>
+            admin/deleteTicketType.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/deleteTicketTypeSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/deleteTicketTypeFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Add User Operation</description>
+        <from-view-id>
+            admin/addUser.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/addUserSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/addUserFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update User Operation</description>
+        <from-view-id>
+            admin/updateUser.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/updateUserSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/updateUserFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete User Operation</description>
+        <from-view-id>
+            admin/deleteUser.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/deleteUserSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/deleteUserFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Add Reserved Booking Operation</description>
+        <from-view-id>
+            /employee/reserveTicketDetails.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/reserveTicketConfirm.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/reserveTicketFailure.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Complete Reserved Booking Operation</description>
+        <from-view-id>
+            /employee/reserveTicketConfirm.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/reserveTicketSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/reserveTicketFailure.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+    
+    <navigation-rule>
+        <description>Complete User Booking Operation</description>
+        <from-view-id>
+            /user/bookingPayment.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/user/bookingSuccessful.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/user/bookTicketFailure.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Final Booking Checkout Operation</description>
+        <from-view-id>
+            user/confirmBooking.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>pay now</from-outcome>
+            <to-view-id>/user/bookingPayment.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>pay later</from-outcome>
+            <to-view-id>/user/bookingSuccessful.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/user/bookTicketFailure.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update Booking Operation</description>
+        <from-view-id>
+            /employee/updateBooking.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/updateBookingSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/updateBookingFailure.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update Reserved Booking Operation</description>
+        <from-view-id>
+            /employee/updateReservation.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/updateReservationSuccessxhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/updateReservationFailure.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete Reserved Booking Operation</description>
+        <from-view-id>
+            /employee/deleteReservation.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/deleteReservationSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/deleteReservationFailure.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete Booking Operation</description>
+        <from-view-id>
+            employee/deleteBooking.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/employee/deleteBookingSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/employee/deleteBookingFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update User Details Operation</description>
+        <from-view-id>
+            user/updateDetails.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>user/updateDetailsSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>user/updateDetailsFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Update User Password Operation</description>
+        <from-view-id>
+            user/updateUserPassword.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>user/updateUserPasswordSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>user/updateUserPasswordFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Delete User Operation</description>
+        <from-view-id>
+            user/deleteUser.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>../logout.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>user/deleteUserFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>Customer Sign Up Operation</description>
+        <from-view-id>
+            /customerSignUp.xhtml
+        </from-view-id>
+
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/customerSignUpSuccess.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/customerSignUpFailure.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

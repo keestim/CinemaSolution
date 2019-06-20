@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Add Movie Listing</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h1>
+            Add Movie
+        </h1>
+        
+        <h:form>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Movie Name"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="moviename" value="#{movieManagedBean.name}"
+                                required="true" requiredMessage="Name for film must be set"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Movie Run Time (In Minutes)"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="movieruntime" value="#{movieManagedBean.runTime}"
+                                validator="#{displayDataManagedBean.validateDouble}" required="true" 
+                                requiredMessage="Movie run time must be set"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Movie Rating"/>
+                        </td>
+                        
+                        <td>
+                            <h:selectOneMenu id="movierating" required="true"
+                                             value="#{movieManagedBean.rating}">
+                                <f:selectItem itemValue="G" itemLabel="G"></f:selectItem>
+                                <f:selectItem itemValue="PG" itemLabel="PG"></f:selectItem>
+                                <f:selectItem itemValue="M" itemLabel="M"></f:selectItem>
+                                <f:selectItem itemValue="MA" itemLabel="MA (15+)"></f:selectItem>
+                                <f:selectItem itemValue="R" itemLabel="R (18+)"></f:selectItem>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Movie Description"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputTextarea id="moviedescription" value="#{movieManagedBean.description}"
+                                required="true" requiredMessage="Description for movie must exist"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h:commandButton id="submit" value="Submit"
+                    action="#{movieManagedBean.addMovie()}"/>
+            
+            <h:commandButton type="reset" value="Reset"/>
+            <br/>
+            
+            <h:outputLink value="#{loginActions.return2MainMenu()}">
+                Return to Main Menu
+            </h:outputLink>
+        </h:form>
+    </h:body>
+</html>

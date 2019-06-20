@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Ticket Type Management</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Ticket Type Management</h1>
+        <h:outputLink value="addTicketType.xhtml">
+            <h2>Add Ticket Type</h2>
+        </h:outputLink>
+        
+        <table>
+            <ui:repeat var="t" value="#{displayDataManagedBean.ticketTypes}">
+                <tr>
+                    <td>
+                        <h:outputText value="#{t.typeName}"/>
+                    </td>
+                    <td>
+                        <h:outputLink value="viewTicketType.xhtml?ticket_id=#{t.id}">
+                            View Ticket Type
+                        </h:outputLink>
+                    </td>
+                    <td>
+                        <h:outputLink value="updateTicketType.xhtml?ticket_id=#{t.id}">
+                            Update Ticket Type
+                        </h:outputLink>
+                    </td>
+                    <td>
+                        <h:outputLink value="deleteTicketType.xhtml?ticket_id=#{t.id}">
+                            Delete Ticket Type
+                        </h:outputLink>
+                    </td>
+                </tr>
+            </ui:repeat>
+        </table>
+        
+        <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

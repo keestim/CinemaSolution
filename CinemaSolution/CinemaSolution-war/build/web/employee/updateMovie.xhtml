@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Update Movie</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="movie_id" value="#{param['movie_id']}" rendered="true"/>
+            <c:set var="movie_dto" value="#{displayDataManagedBean.getMovieByID(movie_id)}"/>
+            <f:viewAction action="#{movieManagedBean.importMovieDTO(movie_dto)}" immediate="true"/>
+        </f:metadata>
+        
+        <h1>Update Movie</h1>
+        <h:form>
+        
+            <h:inputHidden id="movie_id" value="#{movieManagedBean.id}"/>
+       
+            <table>
+                <tr>
+                    <td>
+                        Movie Name
+                    </td>
+                    <td>
+                        <h:inputText value="#{movieManagedBean.name}"
+                            required="true" requiredMessage="Name for film must be set"/>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <h:outputLabel value="Movie Run Time (In Minutes)"/>
+                    </td>
+
+                    <td>
+                        <h:inputText id="movieruntime" value="#{movieManagedBean.runTime}" 
+                            validator="#{displayDataManagedBean.validateDouble}" required="true" 
+                            requiredMessage="Movie run time must be set"/>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        Movie Rating
+                    </td>
+                    <td>
+                        <h:selectOneMenu id="movierating" required="true" requiredMessage="Rating for film must be selected"
+                                         value="#{movieManagedBean.rating}">
+                            <f:selectItem itemValue="G" itemLabel="G"></f:selectItem>
+                            <f:selectItem itemValue="PG" itemLabel="PG"></f:selectItem>
+                            <f:selectItem itemValue="M" itemLabel="M"></f:selectItem>
+                            <f:selectItem itemValue="MA" itemLabel="MA (15+)"></f:selectItem>
+                            <f:selectItem itemValue="R" itemLabel="R (18+)"></f:selectItem>
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <h:outputLabel value="Movie Description"/>
+                    </td>
+
+                    <td>
+                        <h:inputTextarea id="moviedescription" value="#{movieManagedBean.description}" 
+                            required="true" requiredMessage="Description for movie must exist"/>
+                    </td>
+                </tr>
+            </table>
+            
+            <h:commandButton id="submit" value="Submit"
+                action="#{movieManagedBean.updateMovie()}"/>
+            
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./movieManagement.xhtml')}"/>
+            
+        </h:form>
+        
+    </h:body>
+</html>
+

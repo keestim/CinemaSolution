@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <head>
+        <title>Add Session</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <table>
+                <tr>
+                    <td>
+                        <h:outputText value="Date of Showing:"/>
+                    </td>
+                    
+                    <td>
+                        <h:inputText id="showing_date" value="#{showingManagedBean.startDate}" 
+                                required="true" requiredMessage="Date for session must be set">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                        </h:inputText>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <h:outputText value="Time of Showing:"/>
+                    </td>
+                    
+                    <td>
+                        <h:inputText id="showing_time" value="#{showingManagedBean.startTime}"
+                                required="true" requiredMessage="Time for session must be set">
+                            <f:convertDateTime type="time" pattern="HH:mm" timeStyle="long" timeZone="GMT-14"/>
+                        </h:inputText>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <h:outputText value="Movie" />
+                    </td>
+                    <td>          
+                        <h:selectOneMenu id="movie_id" value="#{showingManagedBean.movie}" converter="MovieConverter" 
+                            required="true" requiredMessage="Session movie must be set">
+                            <f:selectItems value="#{showingManagedBean.allMovies}" var="m" itemValue="#{m}" itemLabel="#{m.name} (#{m.rating})"/>
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <h:outputText value="Cinema:"/>
+                    </td>
+                    <td>
+                        <h:selectOneMenu id="cinema_id" value="#{showingManagedBean.cinema}" converter="CinemaConverter" 
+                            required="true" requiredMessage="Cinema for Session must be set">
+                            <f:selectItems value="#{showingManagedBean.allCinemas}" var="y" itemValue="#{y}" itemLabel="#{y.cinemaId}"/>
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+            </table>
+            
+            <h:commandButton id="submit" value="Submit" action="#{showingManagedBean.addShowing()}" />
+            
+            <h:commandButton type="reset" value="Reset"/>
+        </h:form>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+
+    </body>
+</html>

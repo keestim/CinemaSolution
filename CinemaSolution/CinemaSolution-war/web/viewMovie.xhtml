@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>View Movie</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "./style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="movie_id" value="#{param['movie_id']}" rendered="true"/>
+            <c:set var="movie_dto" value="#{displayDataManagedBean.getMovieByID(movie_id)}"/>
+            <f:viewAction action="#{movieManagedBean.importMovieDTO(movie_dto)}" immediate="true"/>
+        </f:metadata>
+        
+        <h1><h:outputText value="#{movieManagedBean.name}"/></h1>
+        <p>Rating: <h:outputText value="#{movieManagedBean.rating}"/></p>
+        <p>Runtime: <h:outputText value="#{movieManagedBean.runTime}"/> minutes</p>
+        <p>Description: <h:outputText value="#{movieManagedBean.description}"/></p>
+        
+        <hr/>
+        <h2>Avaliable Showings:</h2>
+        
+        <ui:repeat var="s" value="#{displayDataManagedBean.getShowingsByMovieID(movie_id)}">
+            <p><h:outputText value="#{s.dateString()} |  #{s.timeString()} (24 Hour)"/>
+                <h:outputLink value="./user/bookTicket.xhtml?showing_id=#{s.id}">
+                   Book NOW
+                </h:outputLink>
+            </p> 
+        </ui:repeat>
+           
+        <hr/>
+        <a href="./index.xhtml"><p>
+            Return to Home
+            </p>
+        </a>
+    </h:body>
+</html>
+

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>User Bookings</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>My Bookings</h1>
+        
+        <table>
+            <ui:repeat value="#{displayDataManagedBean.userBookings}" var="b">
+                <tr>
+                    <td>
+                        <p>
+                            Tickets:
+                        </p>
+                        <p>
+                        <h:outputText value="#{b.ticket_type.typeName} x #{b.numTickets}"/>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Session:    
+                        </p>
+                        <p>
+                            <h:outputText value="#{b.showing.movieId.name} | #{b.showing.dateString()}  #{b.showing.timeString()}"/>
+                        </p>
+                    </td> 
+                    <ui:fragment rendered="#{b.paid}">
+                        <td>
+                            <p>
+                                <strong>PAID</strong>
+                            </p>
+                        </td>
+                        <td>
+                            <h:outputLink value="./viewTicket.xhtml?booking_id=#{b.id}">
+                                View Ticket
+                            </h:outputLink>
+                        </td>
+                    </ui:fragment>
+                </tr>
+            </ui:repeat>
+        </table>
+        
+        <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+        
+    </h:body>
+</html>
+

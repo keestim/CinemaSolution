@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Reserve Ticket Confirm</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewAction action="#{bookingManagedBean.importReservationBeanDTO()}" immediate="true"/>
+            <f:viewAction action="#{bookingManagedBean.setPrice()}"/>
+            
+            <c:set var="#{bookingManagedBean.price}" 
+                   value="#{bookingManagedBean.ticket_type.price * bookingManagedBean.num_tickets}"/>
+        </f:metadata>
+
+        <h1>Booking Confirmation</h1>
+        <h2>Booking Details:</h2>
+
+        <strong>
+            <p>Movie: <h:outputText value="#{bookingManagedBean.showing.movieId.name} (#{bookingManagedBean.showing.movieId.rating})"/></p>
+        </strong>
+        
+        <strong>
+            <p>Date/Time: <h:outputText value="#{bookingManagedBean.showing.dateString()} #{bookingManagedBean.showing.timeString()}"/></p>
+        </strong>
+        
+        <strong>
+            <p>Ticket Type: <h:outputText value="#{bookingManagedBean.ticket_type.typeName}"/></p>
+        </strong>
+        
+        <strong>
+            <p>Total Price: $<h:outputText value="#{bookingManagedBean.price}"/></p>
+        </strong>
+               
+        <h:form>
+            <p>Reservation Name:</p>
+            <h:inputText id="name" value="#{bookingManagedBean.reservation_name}"/>            
+            
+            <br/>
+            
+            <p>Reservation Phone:</p>
+            <h:inputText id="phone" value="#{bookingManagedBean.reservation_phone}"/>
+            
+            <br/>
+
+            <c:if test="#{!displayDataManagedBean.seatsAvaliable(bookingManagedBean.showing.id, bookingManagedBean.num_tickets)}">
+                <p>NO TICKETS LEFT</p>
+            </c:if>
+
+            <c:if test="#{displayDataManagedBean.seatsAvaliable(bookingManagedBean.showing.id, bookingManagedBean.num_tickets)}">
+                <h:commandButton id="submit" value="Submit"
+                    action="#{bookingManagedBean.completeReservation()}"/>
+            </c:if>
+        </h:form>
+        
+        
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+        
+        <em>
+            <p>
+                <c:if test="#{bookingManagedBean.showing.movieId.rating == 'MA'}">
+                    If the ticket holder is under the age of 15, they must accompanied by an adult or guardian
+                </c:if>
+
+                <c:if test="#{bookingManagedBean.showing.movieId.rating == 'R'}">
+                    Ticket Holders must be over the age of 18
+                </c:if>
+            </p>
+        </em>
+    </h:body>
+</html>
+

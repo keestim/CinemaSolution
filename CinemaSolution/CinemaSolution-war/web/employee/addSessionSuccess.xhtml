@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Added Session</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Session <h:outputText value="Cinema #{showingManagedBean.cinema.cinemaId} 
+            Movie #{showingManagedBean.movie.name} 
+            Date #{showingManagedBean.startDate} Time #{showingManagedBean.startTime}"/> 
+            has successfully been added.</h1>
+        <hr/>
+        
+        <p>
+            <h:outputLink value="./sessionManagement.xhtml">
+                Return to Session Management
+            </h:outputLink>
+        </p>
+        
+        <p>
+            <h:outputLink value="#{loginActions.return2MainMenu()}">
+                Return to Main Menu
+            </h:outputLink>
+        </p>
+    </h:body>
+</html>
+

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Update Reservation</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Update Reservation</h1>
+        
+        <f:metadata>
+            <c:set var="reservation_id" value="#{param['reservation_id']}" rendered="true"/>
+            <c:if test="#{reservation_id != null}">
+                <c:set var="reservation_dto" value="#{displayDataManagedBean.getReservationByID(reservation_id)}"/>
+                <c:if test="#{reservation_dto != null}">
+                    <f:viewAction action="#{bookingManagedBean.importReservationBeanDTO(reservation_dto)}" immediate="true"/>
+                </c:if>
+            </c:if>
+        </f:metadata>
+
+            <h:form>
+                <h:inputHidden id="reservation_id" value="#{bookingManagedBean.id}"/>
+
+                <p>Paid?</p>
+                <h:selectBooleanCheckbox id="paid" value="#{bookingManagedBean.paid}"/>
+
+
+                <p>Reservation Name:</p>
+                <h:inputText id="name" value="#{bookingManagedBean.reservation_name}" 
+                    required="true" requiredMessage="the name for the reservation must be set"/>            
+
+                <br/>
+
+                <p>Reservation Phone:</p>
+                <h:inputText id="phone" value="#{bookingManagedBean.reservation_phone}" 
+                             required="true" requiredMessage="the phone number for the reservation must be set" validator="#{usersManagedBean.validatePhone}"/>
+
+                <strong>
+                    <em>
+                        <p>
+                            <h:outputText value="#{bookingManagedBean.showing.movieId.name} | 
+                                #{bookingManagedBean.showing.dateString()} | 
+                                #{bookingManagedBean.showing.timeString()}"/>
+                        </p>
+                    </em>
+                </strong>
+
+                <h:commandButton id="submit" value="Submit"
+                    action="#{bookingManagedBean.updateReservation()}"/>
+
+                <h:commandButton 
+                    value="Cancel" 
+                    action="#{displayDataManagedBean.redirect('./reservedBookings.xhtml')}"/>
+            </h:form>
+    
+    </h:body>
+</html>
+

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:head>
+        <title>Delete Movie</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="movie_id" value="#{param['movie_id']}" rendered="true"/>
+            <c:set var="movie_dto" value="#{displayDataManagedBean.getMovieByID(movie_id)}"/>
+            <f:viewAction action="#{movieManagedBean.importMovieDTO(movie_dto)}" immediate="true"/>
+        </f:metadata>
+        
+        <h1>Delete Movie</h1>
+        
+        <h:form>
+            <h:inputHidden id="movie_id" value="#{movieManagedBean.id}"/>
+            
+            <c:if test="#{movie_id != null}">
+                <p><h:outputText value="#{movie_dto.getName()} (#{movie_dto.getRating()})"/></p>
+                <p><h:outputText value="Runtime: #{movie_dto.getRunTime()} minutes"/></p>
+                <p><h:outputText value="Description: #{movie_dto.getDescription()}"/></p>
+            </c:if>
+            
+            <h:commandButton id="delete" value="Delete Movie"
+                             action="#{movieManagedBean.deleteMovie()}"/>
+
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./movieManagement.xhtml')}"/>
+        </h:form>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

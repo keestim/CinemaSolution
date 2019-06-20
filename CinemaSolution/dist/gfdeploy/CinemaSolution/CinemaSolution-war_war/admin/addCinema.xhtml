@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <h:outputLabel value="Cinema ID:"/>
+                    </td>
+                    <td>
+                        <h:inputText id="cinemaid" value="#{cinemaManagedBean.cinemaId}"/>
+                    </td>
+                    
+                    <td>
+                        <h:outputLabel value="Num Rows:"/>
+                    </td>
+                    <td>
+                        <h:inputText id="numrows" value="#{cinemaManagedBean.numRows}"/>
+                    </td>
+                    
+                    <td>
+                        <h:outputLabel value="Isle Width:"/>
+                    </td>
+                    <td>
+                        <h:inputText id="numisles" value="#{cinemaManagedBean.isleWidth}"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h:commandButton id="submit" value="Submit"
+                         action="#{cinemaManagedBean.addCinema()}"/>
+        </h:form>
+    </h:body>
+</html>

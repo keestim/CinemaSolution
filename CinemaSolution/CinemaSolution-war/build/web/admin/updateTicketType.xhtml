@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Update Ticket Type</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Update Ticket Type</h1>
+        
+        <f:metadata>
+            <c:set var="tickettype_id" value="#{param['ticket_id']}" rendered="true"/>
+            <c:set var="tickettype_dto" value="#{displayDataManagedBean.getTicketTypeByID(tickettype_id)}"/>
+            <f:viewAction action="#{tickettypeanagedBean.importTicketTypeDTO(tickettype_dto)}" immediate="true"/>
+        </f:metadata>
+        
+        <h:form>
+            <h:inputHidden id="tickettype_id" value="#{tickettypeanagedBean.id}"/>
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Type Name:"/>
+                        </td>
+                        <td>
+                            <h:inputText id="type_name" value="#{tickettypeanagedBean.typeName}" required="true" 
+                                         requiredMessage="Name of Ticket Type must be entered"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="Ticket Type Price:"/>
+                        </td>
+                        <td>
+                            <h:inputText id="type_price" value="#{tickettypeanagedBean.price}" 
+                                         required="true" requiredMessage="Ticket Type Price must be set" validator="#{displayDataManagedBean.validateDouble}"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h:commandButton id="submit" value="Submit" action="#{tickettypeanagedBean.updateTicketType()}" />
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./tickettypeManagement.xhtml')}"/>
+        </h:form>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

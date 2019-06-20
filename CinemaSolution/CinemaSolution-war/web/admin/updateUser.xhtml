@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Update User</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Update User</h1>
+            
+            <f:metadata>
+                <c:set var="user_id" value="#{param['user_id']}" rendered="true"/>
+                <c:set var="user_dto" value="#{displayDataManagedBean.getUserByID(user_id)}"/>
+                <f:viewAction action="#{usersManagedBean.importUsersDTO(user_dto)}" immediate="true"/>
+            </f:metadata>
+            
+            <h:inputHidden id="user_id" value="#{usersManagedBean.id}" />
+            <h:inputHidden id="useremail" value="#{usersManagedBean.email}" />
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputText value="User Name"/>
+                        </td>
+                        <td>
+                            <h:inputText id="username" value="#{usersManagedBean.name}" required="true" 
+                                         requiredMessage="User Name must be entered"/>
+                        </td>
+                    </tr>
+                                        
+                    <tr>
+                        <td>
+                            <h:outputText value="Password"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputSecret id="password" value="#{usersManagedBean.password}" 
+                                           validator="#{usersManagedBean.validatePasswordMatch}"
+                                required="true" requiredMessage="Password value must be set">
+                                <f:attribute name="confirm_password" value="#{confirm_password}"/>
+                            </h:inputSecret>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="Confirm password"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputSecret id="confirm_password" binding="#{confirm_password}" 
+                                           
+                                value="#{usersManagedBean.confirm_password}" required="true" 
+                                requiredMessage="Confirm password value must be set"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="User Address"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="address" value="#{usersManagedBean.address}" required="true" 
+                                         requiredMessage="User Address Must be entered"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="User Phone"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="phone" value="#{usersManagedBean.phone}" 
+                                required="true" requiredMessage="User Phone must be entered" 
+                                validator="#{usersManagedBean.validatePhone}"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="User Type:"/>
+                        </td>
+                        <td>
+                            <h:selectOneMenu id="user_type" required="true" 
+                                value="#{usersManagedBean.user_role_name}" requiredMessage="User role must be set">
+                                <f:selectItem itemValue="Admin" itemLabel="Admin"/>
+                                <f:selectItem itemValue="Employee" itemLabel="Employee"/>
+                                <f:selectItem itemValue="User" itemLabel="User"/>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h:commandButton id="Submit" value="Submit" action="#{usersManagedBean.updateUser()}"/>
+            
+             <h:commandButton type="reset" value="Reset"/>
+        </h:form>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

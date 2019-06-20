@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:head>
+        <title>Delete Cinema</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="cinema_id" value="#{param['cinema_id']}" rendered="true"/>
+            <c:if test="#{cinema_id != null}">
+                <c:set var="cinema_dto" value="#{displayDataManagedBean.getCinemaByID(cinema_id)}"/>
+                <c:if test="#{cinema_dto != null}">
+                    <f:viewAction action="#{cinemaManagedBean.importCinemaDTO(cinema_dto)}" immediate="true"/>
+                </c:if>
+            </c:if>
+        </f:metadata>
+        
+        <h1>
+            <h:outputText value="Delete Cinema #{cinema_id}"/>
+        </h1>
+        
+        <h:form>
+
+            <p><h:outputText value="Isle Width: #{cinemaManagedBean.isleWidth}"/></p>
+            <p><h:outputText value="Number of Rows: #{cinemaManagedBean.numRows}"/></p>
+            <p>
+                <h:outputText value="Total Capacity: #{cinemaManagedBean.totalCapacity}"/>
+            </p>
+        
+            <h:inputHidden id="cinema_id" value="#{cinemaManagedBean.cinemaId}"/>
+            <h:commandButton id="delete" value="Delete Cinema"
+                action="#{cinemaManagedBean.deleteCinema()}"/>
+
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./cinemaManagement.xhtml')}"/>
+
+        
+        </h:form>
+        
+        <hr/>
+        
+        <p>
+            <h:outputLink value="./cinemaManagement.xhtml">
+                Return to Cinema Management
+            </h:outputLink>
+        </p>
+        
+        <p>
+            <h:outputLink value="#{loginActions.return2MainMenu()}">
+                Return to Main Menu
+            </h:outputLink>
+        </p>
+    </h:body>
+</html>
+

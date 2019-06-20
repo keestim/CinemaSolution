@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Customer Sign Up</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "./style/styles.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+        <h1>Sign Up User</h1>
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputText value="User Name"/>
+                        </td>
+                        <td>
+                            <h:inputText id="username" value="#{usersManagedBean.name}" required="true" 
+                                         requiredMessage="User Name must be entered"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="User Email"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="useremail" value="#{usersManagedBean.email}" 
+                                         required="true" requiredMessage="User Email must be entered" 
+                                         validator="#{usersManagedBean.validateEmail}"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="Password"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputSecret id="password" value="#{usersManagedBean.password}" 
+                                           validator="#{usersManagedBean.validatePasswordMatch}"
+                                required="true" requiredMessage="Password value must be set">
+                                <f:attribute name="confirm_password" value="#{confirm_password}"/>
+                            </h:inputSecret>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="Confirm password"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputSecret id="confirm_password" binding="#{confirm_password}" 
+                                           
+                                value="#{usersManagedBean.confirm_password}" required="true" 
+                                requiredMessage="Confirm password value must be set"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="User Address"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="address" value="#{usersManagedBean.address}" required="true" 
+                                         requiredMessage="User Address Must be entered"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="User Phone"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="phone" value="#{usersManagedBean.phone}" 
+                                required="true" requiredMessage="User Phone must be entered" 
+                                validator="#{usersManagedBean.validatePhone}"/>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            
+            <h:commandButton id="Submit" value="Submit" action="#{usersManagedBean.addGeneralUser()}"/>
+            
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./index.xhtml')}"/>
+        </h:form>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

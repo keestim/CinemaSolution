@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>View Ticket</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="booking_id" value="#{param['booking_id']}" rendered="true"/>
+            <c:set var="booking_dto" value="#{displayDataManagedBean.getBookingByID(booking_id)}"/>
+            <c:if test="#{booking_dto != null}">
+                <f:viewAction action="#{bookingManagedBean.importBookingBeanDTO(booking_dto)}" immediate="true"/>
+            </c:if>
+        </f:metadata>
+        
+        <c:if test="#{booking_dto != null}">
+            <c:if test="#{bookingManagedBean.ableToView()}">
+                <h1>Admit <h:outputText value="#{bookingManagedBean.num_tickets}"/></h1>
+                <h2>Ticket Type: <h:outputText value="#{bookingManagedBean.ticket_type.typeName}"/></h2>
+                <h2>Film: <h:outputText value="#{bookingManagedBean.showing.movieId.name} (#{bookingManagedBean.showing.movieId.rating})"/></h2>
+                <h2>Cinema <h:outputText value="#{bookingManagedBean.showing.cinema.cinemaId}"/></h2>
+                <h2><h:outputText value="#{bookingManagedBean.showing.dateString()} (DD/MM/YYYY)"/></h2>
+                <h2><h:outputText value="#{bookingManagedBean.showing.timeString()} (HH:MM 24-Hour)"/></h2>
+
+                <c:if test="#{bookingManagedBean.user == null}">
+                    <p>Ref Number: <h:outputText value="#{bookingManagedBean.id} (Reservation ID)"/></p>
+                </c:if>
+
+                <c:if test="#{bookingManagedBean.user != null}">
+                    <p>Ref Number: <h:outputText value="#{bookingManagedBean.id} (Booking ID)"/></p>
+                </c:if>
+            </c:if>
+            <c:if test="#{!bookingManagedBean.ableToView()}">
+                <strong><p>UNABLE TO VIEW TICKET!</p></strong>
+            </c:if>
+        </c:if>
+    </h:body>
+</html>
+

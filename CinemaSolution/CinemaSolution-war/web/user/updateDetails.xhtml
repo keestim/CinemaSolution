@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Update Details</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="user_email" value="#{displayDataManagedBean.userEmail}" rendered="true"/>
+            <c:set var="user_dto" value="#{displayDataManagedBean.getUserByEmail(user_email)}"/>
+            <f:viewAction action="#{usersManagedBean.importUsersDTO(user_dto)}" immediate="true"/>
+        </f:metadata>
+        
+        <h1>Update Details</h1>
+        
+        <h:form>
+            <h:inputHidden id="user_id" value="#{usersManagedBean.id}" />
+            <h:inputHidden id="useremail" value="#{usersManagedBean.email}" />
+            <h:inputHidden id="user_type" value="#{usersManagedBean.user_role_name}"/>
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputText value="User Name"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="username" value="#{usersManagedBean.name}" required="true" 
+                                         requiredMessage="User Name must be entered"/>
+                        </td>
+                    </tr>
+                                                            
+                    <tr>
+                        <td>
+                            <h:outputText value="User Address"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="address" value="#{usersManagedBean.address}" required="true" 
+                                         requiredMessage="User Address Must be entered"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <h:outputText value="User Phone"/>
+                        </td>
+                        
+                        <td>
+                            <h:inputText id="phone" value="#{usersManagedBean.phone}" 
+                                required="true" requiredMessage="User Phone must be entered" 
+                                validator="#{usersManagedBean.validatePhone}"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>Enter Current Password to Confirm:
+                <br/>
+                <h:inputSecret id="check_password" value="#{usersManagedBean.check_password}" 
+                               required="true" requiredMessage="Ensure that check password is entered"/>
+            </p>
+            
+            <h:commandButton id="Submit" value="Submit" action="#{usersManagedBean.updateSelf()}"/>
+            
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./userManagement.xhtml')}"/>
+        </h:form>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

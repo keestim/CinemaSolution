@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Update Booking</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>        
+        <h1>Update Booking</h1>
+        
+        <f:metadata>
+            <c:set var="booking_id" value="#{param['booking_id']}" rendered="true"/>
+            <c:if test="#{booking_id != null}">
+                <c:set var="booking_dto" value="#{displayDataManagedBean.getBookingByID(booking_id)}"/>
+                <c:if test="#{booking_dto != null}">
+                    <f:viewAction action="#{bookingManagedBean.importBookingBeanDTO(booking_dto)}" immediate="true"/>
+                </c:if>
+            </c:if>
+        </f:metadata>
+        
+        <h:form>
+            <h:inputHidden id="booking_id" value="#{bookingManagedBean.id}"/>
+
+            <p>Paid?</p>
+            <h:selectBooleanCheckbox id="paid" value="#{bookingManagedBean.paid}"/>
+            
+            <hr/>
+            
+            <p>Number of Tickets (and type): 
+                <h:outputText value=" #{bookingManagedBean.num_tickets} x #{bookingManagedBean.ticket_type.typeName}"/>
+            </p>
+            
+            <p>Price Paid: <h:outputText value="$#{bookingManagedBean.price}"/></p>
+            
+            <p>Film: <h:outputText value="#{bookingManagedBean.showing.movieId.name} (#{bookingManagedBean.showing.movieId.rating})"/></p>
+            <p>Date/Time: <h:outputText value="#{bookingManagedBean.showing.dateString()} / #{bookingManagedBean.showing.timeString()}"/></p>
+
+            <h:commandButton id="submit" value="Submit"
+                action="#{bookingManagedBean.updateBooking()}"/>
+
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./bookingManagement.xhtml')}"/>
+        </h:form>
+    </h:body>
+</html>
+

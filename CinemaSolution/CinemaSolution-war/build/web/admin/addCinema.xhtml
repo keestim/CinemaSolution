@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Add Cinema</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h1>
+            Add Cinema
+        </h1>
+        <h:form>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <h:outputLabel value="Cinema ID:"/>
+                    </td>
+
+                    <td>
+                        <h:inputText id="CinemaId" value="#{cinemaManagedBean.cinemaId}"
+                            required="true" requiredMessage="Cinema ID must be set" 
+                            validator="#{displayDataManagedBean.validateInt}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel value="Number of Rows:"/>
+                    </td>
+                    <td>
+                        <h:inputText id="NumRows" value="#{cinemaManagedBean.numRows}" required="true" 
+                            requiredMessage="Cinema Number of Rows must be set" 
+                            validator="#{displayDataManagedBean.validateInt}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel value="Isle Width:"/>
+                    </td>
+                    <td>
+                        <h:inputText id="NumIsles" value="#{cinemaManagedBean.isleWidth}" required="true" 
+                            requiredMessage="Cinema Number of Rows must be set" 
+                            validator="#{displayDataManagedBean.validateInt}"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h:commandButton id="submit" value="Submit"
+                         action="#{cinemaManagedBean.addCinema()}"/>
+        
+        <h:commandButton type="reset" value="Reset"/>
+        
+        <hr/>
+        
+        <p>
+            <h:outputLink value="./cinemaManagement.xhtml">
+                Return to Cinema Management
+            </h:outputLink>
+        </p>
+        
+        <p>
+            <h:outputLink value="#{loginActions.return2MainMenu()}">
+                Return to Main Menu
+            </h:outputLink>
+        </p>
+        
+        </h:form>
+    </h:body>
+</html>

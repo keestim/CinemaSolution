@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Users Main Menu</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Users System</h1>
+        
+        <ul>    
+            <li>
+                <p>
+                    <h:outputLink value="./userBookings.xhtml">
+                        View Bookings
+                    </h:outputLink>
+                </p>
+            </li>
+            
+            
+            <li>
+                <p>
+                    <h:outputLink value="../currentShowings.xhtml">
+                        Book a Ticket
+                    </h:outputLink>
+                </p>
+            </li>
+            
+            <li>
+                <p>
+                    <h:outputLink value="./userDetails.xhtml">
+                        Account Details
+                    </h:outputLink>
+                </p>
+            </li>
+            
+            <li>
+                <p>
+                    <h:outputLink value="./updateDetails.xhtml">
+                        Update Account
+                    </h:outputLink>
+                </p>
+            </li>
+            
+            <li>
+                <p>
+                    <h:outputLink value="./updateUserPassword.xhtml">
+                        Update Password
+                    </h:outputLink>
+                </p>
+            </li>
+            
+                        <li>
+                <p>
+                    <h:outputLink value="./deleteUser.xhtml">
+                        Delete Account
+                    </h:outputLink>
+                </p>
+            </li>
+            
+        </ul>
+        
+        <h:form>
+            <h:commandButton value="Log Out" action="#{loginActions.logoutResult()}"/>
+        </h:form>
+    </h:body>
+</html>
+

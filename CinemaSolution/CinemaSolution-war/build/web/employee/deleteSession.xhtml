@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Delete Session</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="session_id" value="#{param['session_id']}" rendered="true"/>
+            <c:set var="session_dto" value="#{displayDataManagedBean.getShowingByID(session_id)}"/>
+            <f:viewAction action="#{showingManagedBean.importShowingDTO(session_dto)}" immediate="true"/>
+        </f:metadata>
+        
+        <h1>Delete Session</h1>
+        
+        <h:form>
+            <h:inputHidden id="session_id" value="#{showingManagedBean.id}"/>
+            
+            <c:if test="#{session_id != null}">
+                <p><h:outputText value="#{session_dto.getMovieId().getName()} (#{session_dto.getMovieId().getRating()})"/></p>
+                <p><h:outputText value="Date: #{session_dto.dateString()}"/></p>
+                <p><h:outputText value="Time: #{session_dto.timeString()}"/></p>
+                <p><h:outputText value="Cinema: #{session_dto.getCinema().getCinemaId()}"/></p>
+            </c:if>
+            
+            <h:commandButton id="delete" value="Delete Movie"
+                             action="#{showingManagedBean.deleteShowing()}"/>
+
+            <h:commandButton type="reset" value="Reset"/>
+        </h:form>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Reserve Ticket</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Session for reservation</h1>
+        <ui:repeat value="#{displayDataManagedBean.currentShowings}" var="s">
+            <h:link value="#{s.movieId.name} (#{s.movieId.rating}) | #{s.timeString()} | #{s.dateString()}" 
+                    outcome="reserveTicketDetails" >
+                <p><f:param name="showing_id" value="#{s.id}" /></p>
+            </h:link>
+        </ui:repeat>
+    </h:body>
+</html>
+

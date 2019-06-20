@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Delete User</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="user_id" value="#{param['user_id']}" rendered="true"/>
+            <c:if test="#{user_id != null}">
+                <c:set var="user_dto" value="#{displayDataManagedBean.getUserByID(user_id)}"/>
+                <f:viewAction action="#{usersManagedBean.importUsersDTO(user_dto)}" immediate="true"/>
+            </c:if>
+        </f:metadata>
+        
+        <c:if test="#{user_id != null}">
+            <h1>Delete User
+                <h:outputText value="#{user_dto.getName()}"/></h1>
+        </c:if>
+
+        <p>Name: <h:outputText value="#{usersManagedBean.name}"/></p>
+        <p>Email: <h:outputText value="#{usersManagedBean.email}"/></p>
+        <p>Phone: <h:outputText value="#{usersManagedBean.phone}"/></p>
+        <p>Address: <h:outputText value="#{usersManagedBean.address}"/></p>
+        <p>User Type: <h:outputText value="#{usersManagedBean.mapping_dto.groupName}"/></p>
+        
+        <h:form>
+            <h:inputHidden id="user_id" value="#{usersManagedBean.id}" />
+            <h:inputHidden id="user_email" value="#{usersManagedBean.email}" />
+            
+            <h:commandButton id="delete" value="Delete User"
+                    action="#{usersManagedBean.deleteUser()}"/>
+
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./userManagement.xhtml')}"/>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,46 @@
+html, body 
+{
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    
+}
+
+h1 {
+    text-align: center;
+}
+
+.float_element
+{
+    
+    background-color: grey;
+    color: white;
+    float: left;
+    padding: 0.33%;
+    margin: 1%;
+    width: 14%;
+    text-align: center;
+}
+
+.float_container
+{
+    clear: right;
+    width: 100%;
+    display: block;
+    overflow: auto;
+    
+}
+
+.float_main_link
+{
+    width: 33%;
+    margin: 1.5%;
+    float: left;
+    text-align: center;
+    background-color: white;
+    color: black;
+}
+
+a {
+    background-color: grey;
+}

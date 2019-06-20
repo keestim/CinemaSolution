@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Cinema Management</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Cinema Management</h1>
+        
+        <h:outputLink value="addCinema.xhtml">
+            <h2>Add Cinema</h2>
+        </h:outputLink>
+        
+        <table>
+        <ui:repeat value="#{displayDataManagedBean.cinemas}" var="c">
+            <tr>
+                <td>
+                    <h:outputText value="Cinema #{c.cinemaId}"/>
+                </td>
+                <td>
+                    <h:outputLink value="viewCinema.xhtml?cinema_id=#{c.cinemaId}">
+                        <h:outputText value="View Cinema"/>
+                    </h:outputLink>
+                </td>
+                <td>
+                    <h:outputLink value="updateCinema.xhtml?cinema_id=#{c.cinemaId}">
+                        <h:outputText value="Update Cinema"/>
+                    </h:outputLink>
+                </td>
+                <td>
+                    <h:outputLink value="deleteCinema.xhtml?cinema_id=#{c.cinemaId}">
+                        <h:outputText value="Delete Cinema"/>
+                    </h:outputLink>
+                </td>
+            </tr>
+        </ui:repeat>
+        </table>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

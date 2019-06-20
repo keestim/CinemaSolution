@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>User Management</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>User Management</h1>
+        
+        <f:metadata>
+            <f:viewAction action="#{displayDataManagedBean.setAjax_selection('all')}" immediate="true"/>
+        </f:metadata>
+        
+        <h:outputLink value="addUser.xhtml">
+            <h2>Add User</h2>
+        </h:outputLink>
+        
+        <table>
+            <tbody>
+                <h:form>
+                    <tr>
+                        <h:selectOneRadio id="query_selection" value="#{displayDataManagedBean.ajax_selection}">
+                            <td>
+                                <f:selectItem itemValue="all" itemLabel="All Users"/>
+                            </td>
+                            <td>
+                                <f:selectItem itemValue="Admin" itemLabel="Admin"/>
+                            </td>
+                            <td>
+                                <f:selectItem itemValue="Employee" itemLabel="Employee"/>
+                            </td>
+                            <td>
+                                <f:selectItem itemValue="User" itemLabel="User"/>
+                            </td>                            
+                        </h:selectOneRadio>
+                        
+                        <p>Search by Name or Email: 
+                        <h:inputText value="#{displayDataManagedBean.ajax_query}"/>
+                        </p>
+                        
+                        <h:commandButton value="Update" actionListener="users_output">
+                            <f:ajax event="change" execute="query_selection" render="users_output" immediate="true"/>
+                        </h:commandButton>
+                    </tr>
+                </h:form>
+            </tbody>
+        </table>
+        
+        <hr/>
+        
+        <table>
+            <h:panelGroup id="users_output">
+                <ui:repeat var="u" value="#{displayDataManagedBean.users}">
+                    <tr>
+                        <td>
+                            <h:outputText value="#{u.name}"/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{u.email}"/>
+                        </td>
+                        <td>
+                            <strong><h:outputText value="#{u.group_mapping.groupName.toUpperCase()}"/></strong>  
+                        </td>
+                        <td>
+                            <h:outputLink value="viewUser.xhtml?user_id=#{u.id}">
+                                View User
+                            </h:outputLink>
+                        </td>
+                        <td>
+                            <h:outputLink value="updateUser.xhtml?user_id=#{u.id}">
+                                Update User
+                            </h:outputLink>
+                        </td>
+                        <td>
+                            <h:outputLink value="deleteUser.xhtml?user_id=#{u.id}">
+                                Delete User
+                            </h:outputLink>
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </h:panelGroup>
+        </table>
+        
+        <hr/>
+                
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

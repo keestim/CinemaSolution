@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Delete Ticket Type</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <c:set var="ticket_id" value="#{param['ticket_id']}" rendered="true"/>
+            <c:if test="#{ticket_id != null}">
+                <c:set var="ticket_dto" value="#{displayDataManagedBean.getTicketTypeByID(ticket_id)}"/>
+                <f:viewAction action="#{tickettypeanagedBean.importTicketTypeDTO(ticket_dto)}" immediate="true"/>
+            </c:if>
+        </f:metadata>
+        
+        <h:form>
+            <c:if test="#{ticket_id != null}">
+                <h1>Delete Ticket Type '#{ticket_dto.getTypeName()}'</h1>
+           
+            
+             </c:if>
+            <h:inputHidden id="tickettype_id" value="#{tickettypeanagedBean.id}"/>
+            <h:commandButton id="delete" value="Delete Ticket Type"
+                             action="#{tickettypeanagedBean.deleteTicketType()}"/>
+            
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('./tickettypeManagement.xhtml')}"/>
+            
+            <p>
+                <h:outputLink value="#{loginActions.return2MainMenu()}">
+                    Return to Main Menu
+                </h:outputLink>
+            </p>
+        </h:form>
+        
+    </h:body>
+</html>
+

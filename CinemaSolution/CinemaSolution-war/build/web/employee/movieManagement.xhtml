@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Movie Management</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Movie Management</h1>
+        
+        <h:outputLink value="addMovie.xhtml">
+            <h2>Add Movie</h2>
+        </h:outputLink>
+        
+        <h:form>
+            <p>Search by Film Name:</p>
+            <h:inputText id="query_selection" value="#{displayDataManagedBean.ajax_selection}"/>
+            <h:commandButton value="Update" actionListener="movies_output">
+                <f:ajax event="change" execute="query_selection" render="movies_output" immediate="true"/>
+            </h:commandButton>
+        </h:form>
+        
+        <hr/>
+        <table>
+            <h:panelGroup id="movies_output">
+                <ui:repeat value="#{displayDataManagedBean.movies}" var="m">
+                    <tr>
+                        <td>
+                            <h:outputText value="#{m.name} (#{m.rating})"/>
+                        </td>
+                        <td>
+                            <h:outputLink value="user/viewMovie.xhtml?movie_id=#{m.id}">
+                                <h:outputText value="View Movie"/>
+                            </h:outputLink>
+                        </td>
+                        <td>
+                            <h:outputLink value="updateMovie.xhtml?movie_id=#{m.id}">
+                                <h:outputText value="Update Movie"/>
+                            </h:outputLink>
+                        </td>
+                        <td>
+                            <h:outputLink value="deleteMovie.xhtml?movie_id=#{m.id}">
+                                <h:outputText value="Delete Movie"/>
+                            </h:outputLink>
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </h:panelGroup>
+        </table>
+        
+                <hr/>
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

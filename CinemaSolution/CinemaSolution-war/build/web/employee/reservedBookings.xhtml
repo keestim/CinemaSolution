@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Reserved Bookings</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Ticket Reservation Management</h1>
+        
+        <h:outputLink value="reserveTicket.xhtml">
+            <h2>Reserve Ticket</h2>
+        </h:outputLink>
+        
+        <hr/>
+        <table>
+            <ui:repeat value="#{displayDataManagedBean.reservedBookings}" var="r">
+                <tr>
+                    <td>
+                        <p>Name:</p>
+                        <p>
+                            <h:outputText value="#{r.reservationName}"/>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Phone:
+                        </p>
+                        <p>
+                        <h:outputText value="#{r.reservationPhone}"/>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Tickets:
+                        </p>
+                        <p>
+                        <h:outputText value="#{r.booking.ticket_type.typeName} x #{r.booking.numTickets}"/>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Session:    
+                        </p>
+                        <p>
+                            <h:outputText value="#{r.booking.showing.movieId.name} | #{r.booking.showing.dateString()}  #{r.booking.showing.timeString()}"/>
+                        </p>
+                    </td>                    
+                    <td>
+                        <h:outputLink value="./viewReservation.xhtml?reservation_id=#{r.id}">
+                            View Reservation
+                        </h:outputLink>
+                    </td>
+                    
+                    <td>
+                        <h:outputLink value="./updateReservation.xhtml?reservation_id=#{r.id}">
+                            Edit Reservation
+                        </h:outputLink>
+                    </td>
+                    
+                    <td>                        
+                        <h:outputLink value="./deleteReservation.xhtml?reservation_id=#{r.id}">
+                            Delete Reservation
+                        </h:outputLink>
+                    </td>
+                </tr>
+            </ui:repeat>
+        </table>
+        
+        <hr/>
+        
+        <h:outputLink value="#{loginActions.return2MainMenu()}">
+            Return to Main Menu
+        </h:outputLink>
+    </h:body>
+</html>
+

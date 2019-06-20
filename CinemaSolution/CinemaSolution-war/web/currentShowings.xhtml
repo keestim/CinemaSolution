@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Current Showings</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "./style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Current Showings</h1>
+        
+        <ui:repeat value="#{displayDataManagedBean.currentShowings}" var="s">
+            <h:outputText value="#{s.movieId.name} (#{s.movieId.rating}) | #{s.timeString()} | #{s.dateString()}"/>
+               
+            <h:outputLink value="./user/bookTicket.xhtml?showing_id=#{s.id}">
+                <p>
+                    Book Now
+                </p>
+            </h:outputLink>
+            
+
+        </ui:repeat>
+        
+        <hr/>
+        <a href="./index.xhtml">
+            <p>Return to Home</p>
+        </a>
+        
+    </h:body>
+</html>
+

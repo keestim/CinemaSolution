@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Employee Main Menu</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Employee System</h1>
+        <ul>            
+            <li>
+                <h:outputLink value="./bookingManagement.xhtml">
+                    Booking Management
+                </h:outputLink>
+            </li>
+            
+            <li>
+                <h:outputLink value="./reservedBookings.xhtml">
+                    Reserve Ticket Management
+                </h:outputLink>
+            </li>
+            
+            <li>
+                <h:outputLink value="./movieManagement.xhtml">
+                    Movie Management
+                </h:outputLink>
+            </li>
+            
+            <li>
+                <h:outputLink value="./sessionManagement.xhtml">
+                    Session Management
+                </h:outputLink>
+            </li>
+        </ul>
+        
+        <h:form>
+            <h:commandButton value="Log Out" action="#{loginActions.logoutResult()}"/>
+        </h:form>
+    </h:body>
+</html>
+

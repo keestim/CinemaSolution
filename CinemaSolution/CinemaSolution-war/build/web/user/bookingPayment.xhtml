@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Booking Payement</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Pay for Ticket</h1>
+        <f:metadata>
+            <f:viewAction action="#{bookingManagedBean.importBookingBeanDTO()}" immediate="true"/>
+            <f:viewAction action="#{bookingManagedBean.setPrice()}"/>
+            
+            <c:set var="#{bookingManagedBean.price}" 
+                   value="#{bookingManagedBean.ticket_type.price * bookingManagedBean.num_tickets}"/>
+        </f:metadata>
+        
+        <em>
+            <p>
+                Purchase process would occur here
+            </p>
+        </em>
+        
+        <h:form>
+            <h:commandButton id="submit" value="Submit"
+                action="#{bookingManagedBean.payForBooking()}"/>
+
+            <h:commandButton 
+                value="Cancel" 
+                action="#{displayDataManagedBean.redirect('../currentShowings.xhtml')}"/>
+        </h:form>
+        
+        
+    </h:body>
+</html>
+

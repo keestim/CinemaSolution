@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Reserve Ticket Details</title>
+        <link rel = "stylesheet"
+        type = "text/css"
+        href = "../style/styles.css" />
+    </h:head>
+    <h:body>
+        <h1>Reserve Ticket</h1>
+        
+        <f:metadata>
+            <c:set var="showing_id" value="#{param['showing_id']}" rendered="true"/>
+
+            <c:if test="#{showing_id != null}">
+                <c:set var="showing_data" value="#{displayDataManagedBean.getShowingByID(showing_id)}"/>
+                <c:set var="#{bookingManagedBean.showing}" value="#{showing_data}" target="#{bookingManagedBean.showing}"/>
+            </c:if>
+        
+            <f:viewAction action="#{bookingManagedBean.setShowing(showing_data)}" immediate="true"/>
+        </f:metadata>
+               
+        <h:form id="booking_form">
+                
+            <strong>
+                <p>
+                    <h:outputText value="#{showing_data.getMovieId().getName()} (#{showing_data.getMovieId().getRating()})"/>
+                </p>
+                <p>
+                    <h:outputText value="#{showing_data.dateString()} | #{showing_data.timeString()}"/>
+                </p>
+            </strong>
+                
+            <p>
+                <h:outputText value="Number of Tickets Available: #{displayDataManagedBean.getShowingSeatsAvalible(showing_id)}"/>
+            </p>   
+                
+            <h:inputHidden id="showing" value="#{bookingManagedBean.showing}" converter="ShowingConverter"/>
+                
+            <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Ticket Type:</p>
+                    </td>
+
+                    <td>
+                    <h:selectOneMenu id="ticket"
+                                     value="#{bookingManagedBean.ticket_type}"
+                                     validator="#{bookingManagedBean.getCurrentPrice}"
+                                     converter="TicketTypeConverter">
+                        <f:selectItems value="#{displayDataManagedBean.getTicketTypes()}" var="t" 
+                                       itemValue="#{t}" itemLabel="#{t.typeName}"/>
+                        <f:attribute name="num_tickets" value="#{bookingManagedBean.num_tickets}"/>
+                        <f:ajax render="@this price"/>
+                    </h:selectOneMenu>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputText value="Number of Tickets:"/>
+                    </td>
+                    <td>
+                        <h:inputText id="num_tickets"
+                                     validator="#{bookingManagedBean.getNumTickets}"
+                                     value="#{bookingManagedBean.num_tickets}">
+                            <f:ajax render="@this price"/>
+                        </h:inputText>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            <h:messages id="price"/>
+
+            <h:commandButton id="submit" value="Submit" action="#{bookingManagedBean.addUserBooking()}"/>
+        </h:form>
+
+    </h:body>
+</html>
+
